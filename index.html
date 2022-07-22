@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css" />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Trivia App</title>
+    </head>
+    <body>
+        <h1>Trivia App</h1>
+        <ul id="question-list"></ul>
+    </body>
+    <script>
+        window.onload = fetchAPI;
+        async function fetchAPI() {
+            let response = await fetch(
+                'https://the-trivia-api.com/api/questions?limit=5'
+            );
+            let data = await response.json();
+            console.log(data);
+            handleData(data);
+        }
+
+        var list = document.getElementById('question-list');
+        function handleData(data) {
+            for (var i = 0; i < data.length; i++) {
+                let q = data[i].question;
+                let li = document.createElement('div');
+                let div = document.createElement('div');
+                div.classList.add('question-card');
+                let answers = document.createElement('div');
+                answers.classList.add('answers');
+                let option = document.createElement('button');
+                option.innerText = data[i].correctAnswer;
+                option.classList.add('option');
+                answers.appendChild(option);
+                for (var j = 0; j < 3; j++) {
+                    let option = document.createElement('button');
+                    option.classList.add('option');
+                    option.innerText = data[i].incorrectAnswers[j];
+                    answers.appendChild(option);
+                }
+                div.innerText = `Question : ${q}`;
+                div.appendChild(answers);
+                li.appendChild(div);
+                list.appendChild(li);
+            }
+        }
+    </script>
+</html>
