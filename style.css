@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(65, 63, 63);
+    color: rgb(141, 154, 155);
+}
+
+.question-list {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.question-card {
+    width: 70vw;
+    color: rgb(16, 15, 15);
+    background-color: rgb(157, 133, 178);
+    border-radius: 5px;
+    padding: 7px;
+    margin: 12px 0px 12px 0px;
+}
+
+.answers {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
