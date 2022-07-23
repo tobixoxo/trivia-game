@@ -1,20 +1,57 @@
+:root {
+    --dark-purple: rgb(65, 63, 63);
+    --white: rgb(141, 154, 155);
+    --light-purple: rgb(157, 133, 178);
+    --grey-purple: rgb(16, 15, 15);
+    --board-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 8vh;
+}
+
 body {
-    background-color: rgb(65, 63, 63);
-    color: rgb(141, 154, 155);
+    font-family: 'Cabin Sketch', cursive;
+    background-color: var(--dark-purple);
+    color: var(--white);
+    margin: 0%;
+}
+
+main {
+    margin: 0%;
+}
+
+.score-board {
+    border-radius: 1.5vh;
+    background-color: var(--white);
+    color: var(--grey-purple);
+    box-sizing: border-box;
+
+    box-shadow: -5px 5px 5px var(--grey-purple);
+    width: 20vw;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    right: 10px;
+    overflow-x: hidden;
+    padding: 8px;
 }
 
 .question-list {
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0vh 3vh 0vh 3vh;
+    height: var(--board-height);
 }
 
 .question-card {
-    width: 70vw;
-    color: rgb(16, 15, 15);
-    background-color: rgb(157, 133, 178);
+    font-size: 5vh;
+    color: var(--grey-purple);
+    background-color: var(--light-purple);
     border-radius: 5px;
-    padding: 7px;
     margin: 12px 0px 12px 0px;
 }
 
@@ -23,4 +60,13 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.option {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 3vh;
+    border-radius: 1.5vh;
+}
+.option:hover {
+    transform: scale(1.05);
 }
