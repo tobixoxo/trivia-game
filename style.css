@@ -18,16 +18,11 @@ body {
     margin: 0%;
 }
 
-main {
-    margin: 0%;
-}
-
-.score-board {
+#score-board {
     border-radius: 1.5vh;
     background-color: var(--white);
     color: var(--grey-purple);
     box-sizing: border-box;
-
     box-shadow: -5px 5px 5px var(--grey-purple);
     width: 20vw;
     position: fixed;
@@ -41,21 +36,23 @@ main {
 .question-list {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
     margin: 0vh 3vh 0vh 3vh;
     height: var(--board-height);
 }
 
 .question-card {
     font-size: 5vh;
+    width: ATUO;
     color: var(--grey-purple);
     background-color: var(--light-purple);
     border-radius: 5px;
     margin: 12px 0px 12px 0px;
+    padding: 2vw;
 }
 
 .answers {
+    flex-wrap: wrap;
     padding: 5px;
     display: flex;
     flex-direction: row;

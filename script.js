@@ -3,7 +3,7 @@ var NUMBER_OF_QUESTIONS;
 
 async function fetchAPI() {
     let response = await fetch(
-        'https://the-trivia-api.com/api/questions?limit=5'
+        'https://the-trivia-api.com/api/questions?limit=10'
     );
     let data = await response.json();
     console.log(data);
