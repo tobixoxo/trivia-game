@@ -6,7 +6,6 @@ async function fetchAPI() {
         'https://the-trivia-api.com/api/questions?limit=10'
     );
     let data = await response.json();
-    console.log(data);
     NUMBER_OF_QUESTIONS = data.length;
     handleData(data);
 }
@@ -67,7 +66,6 @@ function handleData(data) {
     }
 
     let stats_card = document.getElementById('score-board');
-    console.log(stats_card);
     let num_questions = document.createElement('p');
     num_questions.innerText = `Total Questions: ${data.length}`;
     stats_card.appendChild(num_questions);
@@ -75,10 +73,8 @@ function handleData(data) {
 let curr_score = 0;
 
 function handleClick(id) {
-    console.log(`${id} button clicked!`);
     for (let i = 0; i < 10; i++) {
         if (id == `${i}-0`) {
-            console.log('hello');
             let score_board = document.getElementById('curr-score');
             curr_score += 5;
             score_board.innerHTML = `${curr_score} / ${
@@ -87,7 +83,6 @@ function handleClick(id) {
             let element = document.getElementById(id);
             let parent_element = element.parentElement;
             parent_element.innerText = 'Correct Answer!';
-            console.log(parent_element);
             parent_element.style.color = 'green';
             return;
         }
@@ -98,7 +93,6 @@ function handleClick(id) {
     let element = document.getElementById(id);
     let parent_element = element.parentElement;
     parent_element.innerText = 'Wrong Answer!';
-    console.log(parent_element);
     parent_element.style.color = 'crimson';
     return;
 }
