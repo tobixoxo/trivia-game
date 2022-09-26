@@ -1,5 +1,6 @@
 window.onload = fetchAPI;
 var NUMBER_OF_QUESTIONS;
+var theme = 'light';
 
 async function fetchAPI() {
     let response = await fetch(
@@ -88,11 +89,35 @@ function handleClick(id) {
     if (id.match(regex) !== null) {
         curr_score += 5;
         parent_element.innerText = 'Correct Answer!';
-        parent_element.style.color = 'green';
+        parent_element.style.color = 'var(--green)';
     } else {
         curr_score -= 1;
         parent_element.innerText = 'Wrong Answer!';
         parent_element.style.color = 'crimson';
     }
     return;
+}
+
+function ChangeTheme() {
+    let root = document.querySelector(':root');
+    let root_prop = getComputedStyle(root);
+    if (theme === 'light') {
+        root.style.setProperty('--dark-purple', '#000000');
+        root.style.setProperty('--grey-purple', '#3E065F');
+        root.style.setProperty('--light-purple', '#700B97');
+        root.style.setProperty('--white', 'white');
+        root.style.setProperty('--green', '#42855B');
+        root.style.setProperty('--red', 'red');
+        theme = 'dark';
+        document.getElementById('themeChanger').innerText = 'Light';
+    } else {
+        root.style.setProperty('--dark-purple', 'rgb(65, 63, 63)');
+        root.style.setProperty('--grey-purple', 'rgb(16, 15, 15)');
+        root.style.setProperty('--light-purple', 'rgb(157, 133, 178)');
+        root.style.setProperty('--white', 'rgb(141, 154, 155)');
+        root.style.setProperty('--green', 'green');
+        root.style.setProperty('--red', 'crimson');
+        theme = 'light';
+        document.getElementById('themeChanger').innerText = 'Dark';
+    }
 }
