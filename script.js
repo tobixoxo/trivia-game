@@ -79,28 +79,20 @@ function handleData(data) {
 let curr_score = 0;
 
 function handleClick(id) {
-    console.log('attempt', id);
-    for (let i = 0; i < 10; i++) {
-        //if answer is correct
-        if (id == `${i}-0`) {
-            let score_board = document.getElementById('curr-score');
-            curr_score += 5;
-            score_board.innerHTML = `${curr_score} / ${
-                NUMBER_OF_QUESTIONS * 5
-            }`;
-            let element = document.getElementById(id);
-            let parent_element = element.parentElement;
-            parent_element.innerText = 'Correct Answer!';
-            parent_element.style.color = 'green';
-            return;
-        }
-    }
+    const regex = /[0-1]-0/g;
     let score_board = document.getElementById('curr-score');
-    curr_score -= 1;
-    score_board.innerHTML = `${curr_score} / ${NUMBER_OF_QUESTIONS * 5}`;
     let element = document.getElementById(id);
+    score_board.innerHTML = `${curr_score} / ${NUMBER_OF_QUESTIONS * 5}`;
     let parent_element = element.parentElement;
-    parent_element.innerText = 'Wrong Answer!';
-    parent_element.style.color = 'crimson';
+
+    if (id.match(regex) !== null) {
+        curr_score += 5;
+        parent_element.innerText = 'Correct Answer!';
+        parent_element.style.color = 'green';
+    } else {
+        curr_score -= 1;
+        parent_element.innerText = 'Wrong Answer!';
+        parent_element.style.color = 'crimson';
+    }
     return;
 }
