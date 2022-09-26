@@ -9,6 +9,7 @@ async function fetchAPI() {
     NUMBER_OF_QUESTIONS = data.length;
     handleData(data);
 }
+
 function shuffle(array) {
     let currentIndex = array.length,
         randomIndex;
@@ -29,11 +30,26 @@ function shuffle(array) {
     return array;
 }
 
+function createOption(data, isCorrect, i, j) {
+    let option = document.createElement('button');
+    if (isCorrect === true) {
+        option.innerText = data[i].correctAnswer;
+
+        option.setAttribute('id', `${i}-0`);
+    } else {
+        option.innerText = data[i].incorrectAnswers[j];
+        option.setAttribute('id', `${i}-${j + 1}`);
+    }
+    option.classList.add('option');
+    option.setAttribute('onclick', 'handleClick(this.id)');
+    return option;
+}
+
 function handleData(data) {
-    let list = document.getElementById('question-list');
+    let question_list = document.getElementById('question-list');
 
     for (var i = 0; i < data.length; i++) {
-        let q = data[i].question;
+        let question_text = data[i].question;
         let li = document.createElement('div');
         let div = document.createElement('div');
         div.classList.add('question-card');
@@ -41,28 +57,18 @@ function handleData(data) {
         answers.classList.add('answers');
 
         let option_list = [];
-        let option = document.createElement('button');
-        option.innerText = data[i].correctAnswer;
-        option.classList.add('option');
-        option.setAttribute('id', `${i}-0`);
-        option.setAttribute('onclick', 'handleClick(this.id)');
-        option_list.push(option);
+        option_list.push(createOption(data, true, i, 0));
         for (var j = 0; j < 3; j++) {
-            let option = document.createElement('button');
-            option.classList.add('option');
-            option.setAttribute('id', `${i}-${j + 1}`);
-            option.setAttribute('onclick', 'handleClick(this.id)');
-            option.innerText = data[i].incorrectAnswers[j];
-            option_list.push(option);
+            option_list.push(createOption(data, false, i, j));
         }
         shuffle(option_list);
         for (let i = 0; i < option_list.length; i++) {
             answers.appendChild(option_list[i]);
         }
-        div.innerText = `Question : ${q}`;
+        div.innerText = `Question : ${question_text}`;
         div.appendChild(answers);
         li.appendChild(div);
-        list.appendChild(li);
+        question_list.appendChild(li);
     }
 
     let stats_card = document.getElementById('score-board');
@@ -73,7 +79,9 @@ function handleData(data) {
 let curr_score = 0;
 
 function handleClick(id) {
+    console.log('attempt', id);
     for (let i = 0; i < 10; i++) {
+        //if answer is correct
         if (id == `${i}-0`) {
             let score_board = document.getElementById('curr-score');
             curr_score += 5;
