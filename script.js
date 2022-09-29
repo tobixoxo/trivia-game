@@ -109,7 +109,8 @@ function ChangeTheme() {
         root.style.setProperty('--green', '#42855B');
         root.style.setProperty('--red', 'red');
         theme = 'dark';
-        document.getElementById('themeChanger').innerText = 'Light';
+        document.getElementById('light-svg').style.display = 'inline';
+        document.getElementById('dark-svg').style.display = 'none';
     } else {
         root.style.setProperty('--dark-purple', 'rgb(65, 63, 63)');
         root.style.setProperty('--grey-purple', 'rgb(16, 15, 15)');
@@ -118,6 +119,7 @@ function ChangeTheme() {
         root.style.setProperty('--green', 'green');
         root.style.setProperty('--red', 'crimson');
         theme = 'light';
-        document.getElementById('themeChanger').innerText = 'Dark';
+        document.getElementById('dark-svg').style.display = 'inline';
+        document.getElementById('light-svg').style.display = 'none';
     }
 }
