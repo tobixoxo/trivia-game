@@ -48,7 +48,7 @@ function createOption(data, isCorrect, i, j) {
 
 function handleData(data) {
     let question_list = document.getElementById('question-list');
-
+    
     for (var i = 0; i < data.length; i++) {
         let question_text = data[i].question;
         let li = document.createElement('div');
@@ -80,10 +80,9 @@ function handleData(data) {
 let curr_score = 0;
 
 function handleClick(id) {
-    const regex = /[0-1]-0/g;
+    const regex = /[0-9]-0/g;
     let score_board = document.getElementById('curr-score');
     let element = document.getElementById(id);
-    score_board.innerHTML = `${curr_score} / ${NUMBER_OF_QUESTIONS * 5}`;
     let parent_element = element.parentElement;
 
     if (id.match(regex) !== null) {
@@ -95,6 +94,7 @@ function handleClick(id) {
         parent_element.innerText = 'Wrong Answer!';
         parent_element.style.color = 'crimson';
     }
+    score_board.innerHTML = `${curr_score} / ${NUMBER_OF_QUESTIONS * 5}`;
     return;
 }
 
